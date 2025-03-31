@@ -5,4 +5,4 @@
 
 ## Project-1
 
-- [npshell](/project-1/README.md)
+- [npshell](/project-1)
