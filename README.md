@@ -5,4 +5,8 @@
 
 ## Project-1
 
-- [npshell](/project-1)
+- [npshell](/project-1/)
+
+## Project-2
+
+- [np_simple & np_single_proc](/project-2/)
