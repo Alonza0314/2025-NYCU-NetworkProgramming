@@ -144,6 +144,9 @@ struct commands {
 
     void parseCommands(string input) {
         vector<string> parts = splitBySpace(input);
+        if (parts.empty()) {
+            return;
+        }
         for (size_t i = 0; i < parts.size(); i++) {
             this->originalInput += parts[i];
             if (i != parts.size() - 1) {
