@@ -131,11 +131,15 @@ void processInput(string input, numberedPipes *nbpps) {
 
     switch (getCommandType(commands[0].args[0])) {
     case COMMAND_TYPE_PRINT_ENV:
+        nbpps->decreaseCount();
+        nbpps->releaseInvalidPipes();
         if ((err = processInputPrintEnv(commands[0])) && (err != nil)) {
             cerr << err;
         }
         break;
     case COMMAND_TYPE_SET_ENV:
+        nbpps->decreaseCount();
+        nbpps->releaseInvalidPipes();
         if ((err = processInputSetEnv(commands[0])) && (err != nil)) {
             cerr << err;
         }

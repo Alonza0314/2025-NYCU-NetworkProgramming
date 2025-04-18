@@ -290,16 +290,19 @@ void processInput(string input, numberedPipes *nbpps, socketFd clientSocket, use
 
     switch (cmds.getFirstCommand().getCommandType()) {
     case COMMAND_TYPE_PRINT_ENV:
+        nbpps->decreaseCount();
         if ((err = processInputPrintEnv(cmds.getFirstCommand())) && (err != nil)) {
             cerr << err;
         }
         break;
     case COMMAND_TYPE_SET_ENV:
+        nbpps->decreaseCount();
         if ((err = processInputSetEnv(cmds.getFirstCommand(), clientSocket, uManagement)) && (err != nil)) {
             cerr << err;
         }
         break;
     case COMMAND_TYPE_SERVER:
+        nbpps->decreaseCount();
         if ((err = processInputServer(cmds.getFirstCommand(), clientSocket, uManagement)) && (err != nil)) {
             cerr << err;
         }
@@ -333,6 +336,9 @@ void processInput(string input, numberedPipes *nbpps, socketFd clientSocket, use
             nbpps->removeUsedPipes();
         }
     }
+
+    // remove used pipes to avoid releasing user pipes that has been used
+    nbpps->removeUsedPipes();
 }
 
 error processClientConnection(socketFd clientSocket, usersManagement *uManagement, userPipes *uspps) {
